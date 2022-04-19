@@ -3,7 +3,6 @@ package com.example.Tiim_Scrum_Projekti;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,24 +24,24 @@ public class LoginAuthentication extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .defaultSuccessUrl("/admin", true)
+                .loginPage("/login")
+                .permitAll()
+                .defaultSuccessUrl("/admin", true)
                 .and()
                 .logout()
-                    .permitAll();
+                .permitAll();
     }
 
     @Bean
     @Override
-    public UserDetailsService userDetailsService() {       
+    public UserDetailsService userDetailsService() {
         UserDetails user = User.withDefaultPasswordEncoder()
                 .username("admin")
                 .password("admin")
                 .roles("USER", "ADMIN")
                 .build();
-                List<UserDetails> users = new ArrayList();
-                users.add(user);
+        List<UserDetails> users = new ArrayList();
+        users.add(user);
 
         return new InMemoryUserDetailsManager(users);
     }

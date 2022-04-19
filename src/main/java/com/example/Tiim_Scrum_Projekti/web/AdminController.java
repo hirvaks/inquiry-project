@@ -20,22 +20,22 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/createquiz")
-	public String makeQuiz(){
+	public String makeQuiz() {
 		return "createquiz";
 	}
 
 	@RequestMapping(value = "/quizzes")
-	public String getQuizzes(){
+	public String getQuizzes() {
 		return "quizzes";
 	}
 
 	@RequestMapping(value = "/answers")
-	public String getAnswers(){
+	public String getAnswers() {
 		return "answers";
 	}
 
 	@RequestMapping(value = "/delete/{id}")
-	public String deleteQuiz(){
+	public String deleteQuiz() {
 		return "redirect:/quizzes";
 	}
 }
