@@ -19,8 +19,19 @@ public class AdminController {
 		return "login";
 	}
 
+	@RequestMapping(value = "/createquiz")
+	public String makeQuiz(){
+		return "createquiz";
+	}
+
 	@RequestMapping(value = "/quizzes")
 	public String getQuizzes(){
 		return "quizzes";
 	}
+
+	@RequestMapping(value = "/answers")
+	public String getAnswers(){
+		return "answers";
+	}
+
 }

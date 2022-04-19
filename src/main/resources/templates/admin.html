@@ -10,11 +10,12 @@
 
 	<h2>Admin</h2>
 	<div>
-		<a href="/quizzes" th:text="Kyselyt"></a>
+		<p><a href="/quizzes" th:text="Kyselyt"></a></p>
+		<p><a href="/answers" th:text="Vastaukset"></a></p>
 		<p>Filter Aktiiviset Kyselyt</p>
 		<p>Poista kysely</p>
 		<p>Poista kyselyn vastaukset</p>
-		<p>Uusi kysely pohja</p>
+		<a href="/createquiz">Uusi kysely pohja</a>
 		<form th:action="@{logout}" method="post">
 			<input type="submit" value="Sign Out" />
 		</form>
