@@ -34,4 +34,8 @@ public class AdminController {
 		return "answers";
 	}
 
+	@RequestMapping(value = "/delete/{id}")
+	public String deleteQuiz(){
+		return "redirect:/quizzes";
+	}
 }
