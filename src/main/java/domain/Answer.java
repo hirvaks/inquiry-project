@@ -1,5 +1,6 @@
 package domain;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -8,7 +9,14 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+@Entity
 public class Answer {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -61,6 +69,11 @@ public class Answer {
 
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    @Override
+    public String toString() {
+        return "Answer [id=" + id + ", question=" + question + ", type=" + type + ", value=" + value + "]";
     }
 
 }

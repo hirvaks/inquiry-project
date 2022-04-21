@@ -3,6 +3,7 @@ package domain;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,7 +14,14 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+@Entity
 public class Question {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -80,6 +88,12 @@ public class Question {
 
     public void setQuestionare(Questionare questionare) {
         this.questionare = questionare;
+    }
+
+    @Override
+    public String toString() {
+        return "Question [answers=" + answers + ", id=" + id + ", name=" + name + ", questionare=" + questionare
+                + ", type=" + type + "]";
     }
 
 }

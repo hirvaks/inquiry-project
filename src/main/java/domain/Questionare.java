@@ -11,8 +11,14 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 @Entity
 public class Questionare {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -65,6 +71,11 @@ public class Questionare {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    @Override
+    public String toString() {
+        return "Questionare [id=" + id + ", name=" + name + ", questions=" + questions + ", status=" + status + "]";
     }
 
 }
