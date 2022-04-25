@@ -11,14 +11,10 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+
 
 @Entity
 public class Questionare {
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
