@@ -1,4 +1,4 @@
-package domain;
+package com.example.Tiim_Scrum_Projekti.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 
 @Entity
 public class Answer {
@@ -25,15 +24,15 @@ public class Answer {
     @JoinColumn(name = "questionareid")
     private Question question;
 
-    public Answer( String value, String type) {
+    public Answer(String value, String type) {
         this.value = value;
         this.type = type;
     }
 
-    public Answer( String value, String type, Question question) {
+    public Answer(long id, String value, String type, Question question) {
+        this.id = id;
         this.value = value;
         this.type = type;
-        this.question = question;
     }
 
     public Answer() {
@@ -73,7 +72,7 @@ public class Answer {
 
     @Override
     public String toString() {
-        return "Answer [id=" + id + ", type=" + type + ", value=" + value + "]";
+        return "Answer [id=" + id + ", question=" + question + ", type=" + type + ", value=" + value + "]";
     }
 
 }

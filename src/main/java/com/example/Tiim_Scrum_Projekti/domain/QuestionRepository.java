@@ -1,4 +1,4 @@
-package domain;
+package com.example.Tiim_Scrum_Projekti.domain;
 
 import java.util.List;
 

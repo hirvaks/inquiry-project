@@ -1,4 +1,4 @@
-package domain;
+package com.example.Tiim_Scrum_Projekti.domain;
 
 import java.util.List;
 
@@ -33,7 +33,8 @@ public class Question {
     @JoinColumn(name = "questionareid")
     private Questionare questionare;
 
-    public Question(String name, String type, List<Answer> answers, Questionare questionare) {
+    public Question(long id, String name, String type, List<Answer> answers, Questionare questionare) {
+        this.id = id;
         this.name = name;
         this.type = type;
         this.answers = answers;
@@ -90,7 +91,8 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question [id=" + id + ", name=" + name + " type=" + type + "]";
+        return "Question [answers=" + answers + ", id=" + id + ", name=" + name + ", questionare=" + questionare
+                + ", type=" + type + "]";
     }
 
 }

@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import domain.*;
+import com.example.Tiim_Scrum_Projekti.domain.Question;
+import com.example.Tiim_Scrum_Projekti.domain.QuestionRepository;
 
 @RestController
 @Controller
@@ -25,26 +25,20 @@ public class QuestionRestController {
         return qrepository.findAll();
     }
 
-    /*
-     * @PostMapping("/questions")
-     * Question newQuestion(@RequestBody Question newQuestion) {
-     * return qrepository.save(newQuestion);
-     * }
-     */
+    @PostMapping("/questions")
+    Question newQuestion(@RequestBody Question newQuestion) {
+        return qrepository.save(newQuestion);
+    }
 
-    /*
-     * @PutMapping("/questions/{id}")
-     * Question replaceQuestion(@RequestBody Question newQuestion, @PathVariable
-     * Long id) {
-     * newQuestion.setId(id);
-     * return qrepository.save(newQuestion);
-     * }
-     */
+    @PutMapping("/questions/{id}")
+    Question replaceQuestion(@RequestBody Question newQuestion, @PathVariable Long id) {
+        newQuestion.setId(id);
+        return qrepository.save(newQuestion);
+    }
 
-    /*
-     * @DeleteMapping("/questions/{id}")
-     * void deleteQuestion(@PathVariable Long id) {
-     * qrepository.deleteById(id);
-     * }
-     */
+    @DeleteMapping("/questions/{id}")
+    void deleteQuestion(@PathVariable Long id) {
+        qrepository.deleteById(id);
+    }
+
 }

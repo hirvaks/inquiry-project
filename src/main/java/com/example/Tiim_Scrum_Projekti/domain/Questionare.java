@@ -1,4 +1,4 @@
-package domain;
+package com.example.Tiim_Scrum_Projekti.domain;
 
 import java.util.List;
 
@@ -11,8 +11,6 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
-
 @Entity
 public class Questionare {
 
@@ -23,19 +21,15 @@ public class Questionare {
     private String name;
     private boolean status;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Question")
     @JsonIgnore
     private List<Question> questions;
 
-    public Questionare(String name, boolean status, List<Question> questions) {
+    public Questionare(long id, String name, boolean status, List<Question> questions) {
+        this.id = id;
         this.name = name;
         this.status = status;
         this.questions = questions;
-    }
-
-    public Questionare(String name, boolean status) {
-        this.name = name;
-        this.status = status;
     }
 
     public Questionare() {
@@ -75,7 +69,7 @@ public class Questionare {
 
     @Override
     public String toString() {
-        return "Questionare [id=" + id + ", name=" + name + ", status=" + status + "]";
+        return "Questionare [id=" + id + ", name=" + name + ", questions=" + questions + ", status=" + status + "]";
     }
 
 }

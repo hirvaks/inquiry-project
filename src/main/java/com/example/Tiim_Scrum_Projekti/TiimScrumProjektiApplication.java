@@ -7,8 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import domain.Question;
-import domain.QuestionRepository;
+import com.example.Tiim_Scrum_Projekti.domain.QuestionRepository;
+import com.example.Tiim_Scrum_Projekti.domain.Question;
 
 @SpringBootApplication
 public class TiimScrumProjektiApplication {
@@ -25,8 +25,8 @@ public class TiimScrumProjektiApplication {
 
 			System.out.println("HELLO I AM HERE");
 
-			qrepository.save(new Question(0, "Kuka on Trump?", "Monivalinta", null, null));
-			qrepository.save(new Question(1, "Kuka on Lump?", "Avoin teksti", null, null));
+			qrepository.save(new Question("Kuka on Trump?", "Monivalinta"));
+			qrepository.save(new Question("Kuka on Lump?", "Avoin teksti"));
 
 			log.info("fetch all questions");
 			for (Question question : qrepository.findAll()) {
