@@ -33,12 +33,16 @@ public class Question {
     @JoinColumn(name = "questionareid")
     private Questionare questionare;
 
-    public Question(long id, String name, String type, List<Answer> answers, Questionare questionare) {
-        this.id = id;
+    public Question(String name, String type, List<Answer> answers, Questionare questionare) {
         this.name = name;
         this.type = type;
         this.answers = answers;
         this.questionare = questionare;
+    }
+
+    public Question(String name, String type) {
+        this.name = name;
+        this.type = type;
     }
 
     public Question() {
@@ -86,8 +90,7 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question [answers=" + answers + ", id=" + id + ", name=" + name + ", questionare=" + questionare
-                + ", type=" + type + "]";
+        return "Question [id=" + id + ", name=" + name + " type=" + type + "]";
     }
 
 }

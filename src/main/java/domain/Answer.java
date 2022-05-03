@@ -25,10 +25,15 @@ public class Answer {
     @JoinColumn(name = "questionareid")
     private Question question;
 
-    public Answer(long id, String value, String type, Question question) {
-        this.id = id;
+    public Answer( String value, String type) {
         this.value = value;
         this.type = type;
+    }
+
+    public Answer( String value, String type, Question question) {
+        this.value = value;
+        this.type = type;
+        this.question = question;
     }
 
     public Answer() {
@@ -68,7 +73,7 @@ public class Answer {
 
     @Override
     public String toString() {
-        return "Answer [id=" + id + ", question=" + question + ", type=" + type + ", value=" + value + "]";
+        return "Answer [id=" + id + ", type=" + type + ", value=" + value + "]";
     }
 
 }

@@ -27,11 +27,15 @@ public class Questionare {
     @JsonIgnore
     private List<Question> questions;
 
-    public Questionare(long id, String name, boolean status, List<Question> questions) {
-        this.id = id;
+    public Questionare(String name, boolean status, List<Question> questions) {
         this.name = name;
         this.status = status;
         this.questions = questions;
+    }
+
+    public Questionare(String name, boolean status) {
+        this.name = name;
+        this.status = status;
     }
 
     public Questionare() {
@@ -71,7 +75,7 @@ public class Questionare {
 
     @Override
     public String toString() {
-        return "Questionare [id=" + id + ", name=" + name + ", questions=" + questions + ", status=" + status + "]";
+        return "Questionare [id=" + id + ", name=" + name + ", status=" + status + "]";
     }
 
 }
