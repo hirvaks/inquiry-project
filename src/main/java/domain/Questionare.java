@@ -27,11 +27,9 @@ public class Questionare {
     @JsonIgnore
     private List<Question> questions;
 
-    public Questionare(long id, String name, boolean status, List<Question> questions) {
-        this.id = id;
+    public Questionare(String name, boolean status) {
         this.name = name;
         this.status = status;
-        this.questions = questions;
     }
 
     public Questionare() {

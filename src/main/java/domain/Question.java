@@ -33,11 +33,9 @@ public class Question {
     @JoinColumn(name = "questionareid")
     private Questionare questionare;
 
-    public Question(long id, String name, String type, List<Answer> answers, Questionare questionare) {
-        this.id = id;
+    public Question(String name, String type, Questionare questionare) {
         this.name = name;
         this.type = type;
-        this.answers = answers;
         this.questionare = questionare;
     }
 

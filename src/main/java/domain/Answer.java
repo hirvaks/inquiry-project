@@ -25,10 +25,10 @@ public class Answer {
     @JoinColumn(name = "questionareid")
     private Question question;
 
-    public Answer(long id, String value, String type, Question question) {
-        this.id = id;
+    public Answer(String value, String type, Question question) {
         this.value = value;
         this.type = type;
+        this.question = question;
     }
 
     public Answer() {
