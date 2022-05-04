@@ -1,14 +1,14 @@
-CREATE DATABASE quiz_db;
+/*CREATE DATABASE quiz_db;*/
 use quiz_db;
 
-CREATE TABLE questionare(
+CREATE TABLE IF NOT EXISTS questionare(
 id INTEGER NOT NULL,
 name VARCHAR(100) NOT NULL,
 active BIT,
 PRIMARY KEY (id)
 );
 
-CREATE TABLE question(
+CREATE TABLE IF NOT EXISTS question(
 id INTEGER NOT NULL,
 name VARCHAR(150) NOT NULL,
 type VARCHAR(50),
@@ -17,7 +17,7 @@ PRIMARY KEY (id),
 FOREIGN KEY (questionare_id) REFERENCES questionare(id)
 );
 
-CREATE TABLE answer(
+CREATE TABLE IF NOT EXISTS answer(
 id INTEGER NOT NULL,
 value VARCHAR(100) NOT NULL,
 type VARCHAR(50),
