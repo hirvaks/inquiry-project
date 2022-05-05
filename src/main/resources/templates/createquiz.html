@@ -7,19 +7,11 @@
 	<body>
 		<h2>Luo kysely</h2>
 		<div>
-			<form method="post">
+			<form th:object="${questionare}" th:action="@{/questionare/add}" method="post" class="form">
 			  	<label>Kyselyn nimi</label>
-				<input type="text" required />
-				<label for="kysymys">Kysymys</label>
-                <input type="text" required />
-                <label for="vastaus">Vastaus tyyppi</label>
-			 	<select class="form-control">
-       				<option>Avoin kysymys</option>
-                    <option>Monivalinta</option>
-                    <option>Monivalinta monella valittavalla valinnalla</option>
-    			</select>
-                <label for="vastaus">Vastaus arvo</label>
-                <input type="text" required />
+				<input type="text" id="name" th:field="*{name}" required />
+				<label>Aktiivisuus status</label>
+				<input type="text" id="status" th:field="*{status}" required />
 				<input type="submit" value="Save"></input>
 			</form>
             <a href="/admin" th:text="Takaisin"></a>

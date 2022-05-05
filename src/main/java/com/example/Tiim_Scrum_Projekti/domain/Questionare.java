@@ -20,18 +20,18 @@ public class Questionare {
     private long id;
 
     private String name;
-    private boolean status;
+    private int status;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "questionare")
     @JsonIgnore
     private List<Question> questions;
 
-    public Questionare(String name, boolean status, List<Question> questions) {
+    public Questionare(String name, int status, List<Question> questions) {
         this.name = name;
         this.status = status;
         this.questions = questions;
     }
-    public Questionare(String name, boolean status) {
+    public Questionare(String name, int status) {
         this.name = name;
         this.status = status;
     }
@@ -55,11 +55,11 @@ public class Questionare {
         this.name = name;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -70,6 +70,16 @@ public class Questionare {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
+
+    //kysymyksen lisäys
+    public void addQuestion(Question question) {
+		questions.add(question);
+	}
+	
+    //kysymyksen poisto
+	public void deleteQuestion(Question question) {
+		questions.remove(question);
+	}
 
     @Override
     public String toString() {

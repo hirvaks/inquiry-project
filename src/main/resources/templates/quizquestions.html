@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" contect="text/html" charset="UTF-8">
+		<title>Kysymykset kyselyyn [[${questionare.name}]]</title>
+	</head>
+	<body>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>Kysymyksen nimi</th>
+						<th>Tyyppi</th>
+						<th>Vastaukset</th>
+						<!-- <th>Delete</th> -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each = "question : ${questionare.questions}">
+						<td th:text ="${question.name}"></td>
+						<td th:text="${question.type.name}"></td>
+						<td><a th:href="@{/question/{id}/questions(id=${questionare.id})}" th:text="Vastaukset"></a></td>
+						<!--<td><a th:href="@{/questionare/{id}/delete/{questionid}(id=${questionare.id}, questionid=${question.id})}"></a><td> -->
+					</tr>
+				</tbody>
+			</table>
+			<a href="/admin" th:text="Takaisin"></a>
+		</div>
+	</body>
+</html>

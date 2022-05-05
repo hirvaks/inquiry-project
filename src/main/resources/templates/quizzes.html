@@ -10,20 +10,22 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Kyselyt</th>
+						<th>Nimi</th>
+						<th>Status</th>
+						<th>Kysymykset</th>
+						<th>Edit</th>
+						<th>Delete</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-                        <td>Kysely 1</td>
-                        <td><a href="/answers" th:text="Vastaukset"></a></td>
-                        <td>[Delete]</td>
-                    </tr>
-					<tr>
-                        <td>Kysely 2</td>
-                        <td><a href="/answers" th:text="Vastaukset"></a></td>
-                        <td>[Delete]</td>
-                    </tr>
+					<tr th:each = "questionare : ${questionares}">
+						<td th:text ="${questionare.name}"></td>
+						<div th:unless="${questionare.status} == 0"><td>Aktiivinen</td></div>
+						<div th:if="${questionare.status} == 0"><td>Ei aktiivinen</td></div>
+						<td><a th:href="@{/questionare/{id}/questions(id=${questionare.id})}" th:text="Kysymykset"></a></td>
+						<td><a th:href="@{/questionare/{id}/edit(id=${questionare.id})}"></a></td>
+						<td><a th:href="@{/questionare/{id}/delete(id=${questionare.id})}"></a><td>
+					</tr>
 				</tbody>
 			</table>
 			<a href="/admin" th:text="Takaisin"></a>
