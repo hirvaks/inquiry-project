@@ -20,7 +20,7 @@ public class LoginAuthentication extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/login").permitAll()
+                .antMatchers("/", "/login", "/questions").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
