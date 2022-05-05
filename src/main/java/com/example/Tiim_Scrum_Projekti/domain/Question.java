@@ -23,7 +23,11 @@ public class Question {
     private long id;
 
     private String name;
-    private String type;
+    
+    @ManyToOne
+    @JsonIgnoreProperties
+    @JoinColumn(name = "typeid")
+    private Type type;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "question")
     @JsonIgnore
@@ -34,7 +38,7 @@ public class Question {
     @JoinColumn(name = "questionareid")
     private Questionare questionare;
 
-    public Question(String name, String type, List<Answer> answers,
+    public Question(String name, Type type, List<Answer> answers,
             Questionare questionare) {
         this.name = name;
         this.type = type;
@@ -42,7 +46,7 @@ public class Question {
         this.questionare = questionare;
     }
 
-    public Question(String name, String type) {
+    public Question(String name, Type type) {
         this.name = name;
         this.type = type;
     }
@@ -66,11 +70,11 @@ public class Question {
         this.name = name;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

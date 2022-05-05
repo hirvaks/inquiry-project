@@ -17,21 +17,26 @@ public class Answer {
     private long id;
 
     private String value;
-    private String type;
+    
+    @ManyToOne
+    @JsonIgnoreProperties
+    @JoinColumn(name = "typeid")
+    private Type type;
 
     @ManyToOne
     @JsonIgnoreProperties
-    @JoinColumn(name = "questionareid")
+    @JoinColumn(name = "questionid")
     private Question question;
 
-    public Answer(String value, String type) {
+    public Answer(String value, Type type) {
         this.value = value;
         this.type = type;
     }
 
-    public Answer(String value, String type, Question question) {
+    public Answer(String value, Type type, Question question) {
         this.value = value;
         this.type = type;
+        this.question = question;
     }
 
     public Answer() {
@@ -53,11 +58,11 @@ public class Answer {
         this.value = value;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

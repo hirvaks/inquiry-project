@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.example.Tiim_Scrum_Projekti.domain.QuestionRepository;
+import com.example.Tiim_Scrum_Projekti.domain.Type;
+import com.example.Tiim_Scrum_Projekti.domain.TypeRepository;
 import com.example.Tiim_Scrum_Projekti.domain.Question;
 
 @SpringBootApplication
@@ -19,14 +21,21 @@ public class TiimScrumProjektiApplication {
 	}
 
 	@Bean
-	public CommandLineRunner QuestionDemo(QuestionRepository qrepository) {
+	public CommandLineRunner QuestionDemo(QuestionRepository qrepository, TypeRepository typerepo) {
 		return (args) -> {
 			log.info("save a couple of questions");
 
 			// System.out.println("HELLO DEVELOPER");
 
-			qrepository.save(new Question("Kuka on Trump?", "Monivalinta"));
-			qrepository.save(new Question("Kuka on Lump?", "Avoin teksti"));
+			Type type1 = new Type("Monivalinta");
+			Type type2 = new Type("Avoin");
+
+			typerepo.save(type1);
+			typerepo.save(type2);
+
+
+			qrepository.save(new Question("Kuka on Trump?", type1));
+			qrepository.save(new Question("Kuka on Lump?", type2));
 
 			log.info("fetch all questions");
 			for (Question question : qrepository.findAll()) {
