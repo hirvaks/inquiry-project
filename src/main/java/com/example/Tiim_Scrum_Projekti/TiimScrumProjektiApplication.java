@@ -8,8 +8,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.example.Tiim_Scrum_Projekti.domain.QuestionRepository;
+import com.example.Tiim_Scrum_Projekti.domain.Questionare;
+import com.example.Tiim_Scrum_Projekti.domain.QuestionareRepository;
 import com.example.Tiim_Scrum_Projekti.domain.Type;
 import com.example.Tiim_Scrum_Projekti.domain.TypeRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.Tiim_Scrum_Projekti.domain.Question;
 
 @SpringBootApplication
@@ -21,7 +27,7 @@ public class TiimScrumProjektiApplication {
 	}
 
 	@Bean
-	public CommandLineRunner QuestionDemo(QuestionRepository qrepository, TypeRepository typerepo) {
+	public CommandLineRunner QuestionDemo(QuestionRepository qrepository, TypeRepository typerepo, QuestionareRepository quizrepo) {
 		return (args) -> {
 			log.info("save a couple of questions");
 
@@ -33,9 +39,26 @@ public class TiimScrumProjektiApplication {
 			typerepo.save(type1);
 			typerepo.save(type2);
 
+			Questionare quiz1 = new Questionare("Kysely 1", true);
+			Questionare quiz2 = new Questionare("Kysely 2", true);
 
-			qrepository.save(new Question("Kuka on Trump?", type1));
-			qrepository.save(new Question("Kuka on Lump?", type2));
+			quizrepo.save(quiz1);
+			quizrepo.save(quiz2);
+
+			Question question1 = new Question("Kuka on Trump?", type1);
+			Question question2 = new Question("Missä on Trump?", type1);
+			Question question3 = new Question("Kuka on Lump?", type2);
+
+			qrepository.save(question1);
+			qrepository.save(question2);
+			qrepository.save(question3);
+			
+			List<Question> quiz1questions = new ArrayList<>();
+			quiz1questions.add(question1);
+			quiz1questions.add(question2);
+
+			question1.setQuestionare(quiz1);
+			question2.setQuestionare(quiz1);
 
 			log.info("fetch all questions");
 			for (Question question : qrepository.findAll()) {

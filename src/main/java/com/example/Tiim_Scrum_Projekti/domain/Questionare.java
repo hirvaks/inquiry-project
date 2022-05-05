@@ -31,6 +31,10 @@ public class Questionare {
         this.status = status;
         this.questions = questions;
     }
+    public Questionare(String name, boolean status) {
+        this.name = name;
+        this.status = status;
+    }
 
     public Questionare() {
     }
