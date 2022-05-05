@@ -29,8 +29,7 @@ public class Answer {
         this.type = type;
     }
 
-    public Answer(long id, String value, String type, Question question) {
-        this.id = id;
+    public Answer(String value, String type, Question question) {
         this.value = value;
         this.type = type;
     }

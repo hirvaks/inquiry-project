@@ -23,7 +23,7 @@ public class TiimScrumProjektiApplication {
 		return (args) -> {
 			log.info("save a couple of questions");
 
-			System.out.println("HELLO I AM HERE");
+			System.out.println("HELLO DEVELOPER");
 
 			qrepository.save(new Question("Kuka on Trump?", "Monivalinta"));
 			qrepository.save(new Question("Kuka on Lump?", "Avoin teksti"));

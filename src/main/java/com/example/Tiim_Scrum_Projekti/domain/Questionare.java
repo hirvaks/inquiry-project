@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,12 +22,11 @@ public class Questionare {
     private String name;
     private boolean status;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Question")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "questionare")
     @JsonIgnore
     private List<Question> questions;
 
-    public Questionare(long id, String name, boolean status, List<Question> questions) {
-        this.id = id;
+    public Questionare(String name, boolean status, List<Question> questions) {
         this.name = name;
         this.status = status;
         this.questions = questions;
