@@ -20,16 +20,19 @@ public class LoginAuthentication extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/questions").permitAll()
+                .antMatchers("/", "/login", "/questions", "/questions/{id}").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
-                .defaultSuccessUrl("/admin", true)
+                .defaultSuccessUrl("/admin")
                 .and()
                 .logout()
                 .permitAll();
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
+
     }
 
     @Bean

@@ -18,7 +18,7 @@ public class QuestionRestController {
     @Autowired
     private QuestionRepository qrepository;
 
-    // RESTful service to get all question objects
+    // RESTful service to get all quizzes
     @GetMapping("/questions")
     Iterable<Question> getAll() {
         return qrepository.findAll();
@@ -41,6 +41,7 @@ public class QuestionRestController {
     @DeleteMapping("/questions/{id}")
     void deleteQuestion(@PathVariable Long id) {
         qrepository.deleteById(id);
+
     }
 
 }

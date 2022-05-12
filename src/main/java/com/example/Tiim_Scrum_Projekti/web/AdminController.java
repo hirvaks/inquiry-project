@@ -43,17 +43,16 @@ public class AdminController {
 	}
 
 	// Create a quiz
-
-	@RequestMapping(value="/questionare/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/questionare/add", method = RequestMethod.GET)
 	public String addQuestionare(@Valid Model model) {
 		model.addAttribute("questionare", new Questionare());
 		return "createquiz";
 	}
 
-	@RequestMapping(value="/questionare/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/questionare/add", method = RequestMethod.POST)
 	public String addQuestionare(@Valid Questionare questionare) {
 		if (questionare.getName() != "" && questionare.getName() != null) {
-			if (questionare.getStatus() != 0 || questionare.getStatus() != 1){
+			if (questionare.getStatus() != 0 || questionare.getStatus() != 1) {
 				questionare.setStatus(0);
 			}
 			questionareRepository.save(questionare);
@@ -62,14 +61,14 @@ public class AdminController {
 	}
 
 	// List all quizzess
-	@RequestMapping(value={"/quizzes"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/quizzes" }, method = RequestMethod.GET)
 	public String getQuizzes(@Valid Model model) {
 		model.addAttribute("questionares", questionareRepository.findAll());
 		return "quizzes";
 	}
 
-	//List quiz questions
-	@RequestMapping(value="/questionare/{id}/questions", method = RequestMethod.GET)
+	// List quiz questions
+	@RequestMapping(value = "/questionare/{id}/questions", method = RequestMethod.GET)
 	public String getGameAttributes(@PathVariable("id") Long id, @Valid Model model) {
 		Optional<Questionare> questionare = questionareRepository.findById(id);
 		questionare.ifPresent(foundQuestionareObject -> model.addAttribute("questionare", foundQuestionareObject));
