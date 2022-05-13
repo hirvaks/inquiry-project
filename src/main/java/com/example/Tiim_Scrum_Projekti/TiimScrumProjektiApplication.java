@@ -28,7 +28,7 @@ public class TiimScrumProjektiApplication {
 
 	@Bean
 	public CommandLineRunner QuestionDemo(QuestionRepository qrepository, TypeRepository typerepo,
-			QuestionareRepository quizrepo) {
+			QuestionareRepository questionarerepo) {
 		return (args) -> {
 
 			Type type1 = new Type("Monivalinta");
@@ -47,18 +47,18 @@ public class TiimScrumProjektiApplication {
 			qrepository.save(question2);
 			qrepository.save(question3);
 
-			List<Question> quiz1questions = new ArrayList<>();
-			quiz1questions.add(question1);
-			quiz1questions.add(question2);
+			List<Question> questionare1questions = new ArrayList<>();
+			questionare1questions.add(question1);
+			questionare1questions.add(question2);
 
-			Questionare quiz1 = new Questionare("Trumppi", 1);
-			Questionare quiz2 = new Questionare("Kysely 2", 1);
+			Questionare questionare1 = new Questionare("Trumppi", 1);
+			Questionare questionare2 = new Questionare("Kysely 2", 1);
 
-			quizrepo.save(quiz1);
-			quizrepo.save(quiz2);
+			questionarerepo.save(questionare1);
+			questionarerepo.save(questionare2);
 
-			quiz1.setQuestions(quiz1questions);
-			quizrepo.save(quiz1);
+			questionare1.setQuestions(questionare1questions);
+			questionarerepo.save(questionare1);
 
 			log.info("fetch all questions");
 			for (Question question : qrepository.findAll()) {
