@@ -51,14 +51,11 @@ public class TiimScrumProjektiApplication {
 			questionare1questions.add(question1);
 			questionare1questions.add(question2);
 
-			Questionare questionare1 = new Questionare("Trumppi", 1);
+			Questionare questionare1 = new Questionare("Trumppi", 1, questionare1questions);
 			Questionare questionare2 = new Questionare("Kysely 2", 1);
 
 			questionarerepo.save(questionare1);
 			questionarerepo.save(questionare2);
-
-			questionare1.setQuestions(questionare1questions);
-			questionarerepo.save(questionare1);
 
 			log.info("fetch all questions");
 			for (Question question : qrepository.findAll()) {

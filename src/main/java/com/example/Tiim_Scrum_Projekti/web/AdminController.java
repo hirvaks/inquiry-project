@@ -1,5 +1,6 @@
 package com.example.Tiim_Scrum_Projekti.web;
 
+import com.example.Tiim_Scrum_Projekti.domain.Question;
 import com.example.Tiim_Scrum_Projekti.domain.QuestionRepository;
 import com.example.Tiim_Scrum_Projekti.domain.Questionare;
 import com.example.Tiim_Scrum_Projekti.domain.QuestionareRepository;
@@ -64,7 +65,7 @@ public class AdminController {
 	@RequestMapping(value = { "/quizzes" }, method = RequestMethod.GET)
 	public String getQuizzes(@Valid Model model) {
 		model.addAttribute("questionares", questionareRepository.findAll());
-		return "quizzes";
+		return "questionares";
 	}
 
 	// List quiz questions
@@ -83,8 +84,14 @@ public class AdminController {
 	}
 
 	// Delete Questions
-	@RequestMapping(value = "/delete/{id}")
-	public String deleteQuiz() {
-		return "redirect:/quizzes";
+	@RequestMapping(value="/questionare/{id}/questions/delete/{guestionid}", method = RequestMethod.GET)
+	public String deleteGameAttributes(@PathVariable("id") Long id, @PathVariable("guestionid") Long attid) {
+		Questionare questionare = questionareRepository.findById(id).get();
+		Question question = questionRepository.findById(attid).get();
+		if (questionare.hasQuestion(question)) {
+			questionare.deleteQuestion(question);
+			questionareRepository.save(questionare);
+		}
+		return "redirect:/game/{id}/attributes";
 	}
 }

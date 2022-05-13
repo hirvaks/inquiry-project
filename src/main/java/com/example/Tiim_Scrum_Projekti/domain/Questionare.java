@@ -22,7 +22,7 @@ public class Questionare {
     private String name;
     private int status;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "questionare")
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "questionare")
     @JsonIgnore
     private List<Question> questions;
 
@@ -74,6 +74,11 @@ public class Questionare {
     //kysymyksen lisäys
     public void addQuestion(Question question) {
 		questions.add(question);
+	}
+
+    //onko kysymys kyselyssä
+    public boolean hasQuestion(Question question) {
+		return questions.contains(question);
 	}
 	
     //kysymyksen poisto

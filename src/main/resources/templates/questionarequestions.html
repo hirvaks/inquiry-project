@@ -2,25 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta http-equiv="Content-Type" contect="text/html" charset="UTF-8">
-		<title>Kysymykset kyselyyn [[${questionare.name}]]</title>
+		<title>Kysymykset [[${questionare.name}]]</title>
 	</head>
 	<body>
 		<div>
+			<h2>Kysymykset kyselyyn [[${questionare.name}]]</h2>
 			<table>
 				<thead>
 					<tr>
 						<th>Kysymyksen nimi</th>
 						<th>Tyyppi</th>
 						<th>Vastaukset</th>
-						<!-- <th>Delete</th> -->
+						<th>Delete</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each = "question : ${questionare.questions}">
 						<td th:text ="${question.name}"></td>
-						<td th:text="${question.type.name}"></td>
-						<td><a th:href="@{/question/{id}/questions(id=${questionare.id})}" th:text="Vastaukset"></a></td>
-						<!--<td><a th:href="@{/questionare/{id}/delete/{questionid}(id=${questionare.id}, questionid=${question.id})}"></a><td> -->
+						<td th:text="${question.type}"></td>
+						<td><a th:href="@{/question/{id}/answers(id=${questionare.id})}" th:text="Vastaukset"></a></td>
+						<td><a th:href="@{/questionare/{id}/questions/delete/{questionid}/(id=${questionare.id}, questionid=${question.id})}" th:text="delete"></a><td>
 					</tr>
 				</tbody>
 			</table>
