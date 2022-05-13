@@ -73,7 +73,7 @@ public class AdminController {
 		Optional<Questionare> questionare = questionareRepository.findById(id);
 		questionare.ifPresent(foundQuestionareObject -> model.addAttribute("questionare", foundQuestionareObject));
 		model.addAttribute("questions", questionRepository.findAll());
-		return "quizquestions";
+		return "questionarequestions";
 	}
 
 	// Show answers
