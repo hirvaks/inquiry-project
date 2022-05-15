@@ -74,7 +74,7 @@ public class AdminController {
 	}
 
 	// Show answers
-	@RequestMapping(value = "/answers")
+	@RequestMapping(value = "/question/{id}/answers")
 	public String getAnswers() {
 		return "answers";
 	}

@@ -9,18 +9,17 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Vastaukset</th>
+						<th>Vastaus</th>
+						<th>vastauksen tyyppi</th>
+						<th>Kysymyksen id</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-                        <td>Vastaus 1</td>
-                        <td>[Delete]</td>
-                    </tr>
-					<tr>
-                        <td>Vastaus 2</td>
-                        <td>[Delete]</td>
-                    </tr>
+					<tr th:each = "answer : ${question.answers}">
+						<td th:text ="${answer.name}"></td>
+						<td th:text="${answer.type.name}"></td>
+						<td th:text="${question.id}"></td>
+					</tr>
 				</tbody>
 			</table>
 			<a href="/admin" th:text="Takaisin"></a>
