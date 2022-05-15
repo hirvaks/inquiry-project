@@ -32,7 +32,7 @@ public class AdminController {
 	private TypeRepository typeRepository;
 
 	// Admin page
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	@RequestMapping(value = {"/admin", "/"}, method = RequestMethod.GET)
 	public String getAdminPage() {
 		return "admin";
 	}
@@ -50,30 +50,26 @@ public class AdminController {
 		return "createquiz";
 	}
 
-	@RequestMapping(value = "/questionare/add", method = RequestMethod.POST)
-	public String addQuestionare(@Valid Questionare questionare) {
-		if (questionare.getName() != "" && questionare.getName() != null) {
-			if (questionare.getStatus() != 0 || questionare.getStatus() != 1) {
-				questionare.setStatus(0);
-			}
-			questionareRepository.save(questionare);
-		}
-		return "redirect:/admin";
+	// Delete Questionare
+	@RequestMapping(value="/questionare/{id}/delete", method = RequestMethod.GET)
+	public String deleteQuestionare(@PathVariable("id") Long id, @Valid Model model) {
+		questionareRepository.deleteById(id);
+		return "redirect:/questionares";
 	}
 
 	// List all questionares
-	@RequestMapping(value = { "/quizzes" }, method = RequestMethod.GET)
-	public String getQuizzes(@Valid Model model) {
+	@RequestMapping(value="/questionares", method = RequestMethod.GET)
+	public String getQuestionares(@Valid Model model) {
 		model.addAttribute("questionares", questionareRepository.findAll());
 		return "questionares";
 	}
 
 	// List a questionares questions
-	@RequestMapping(value = "/questionare/{id}/questions", method = RequestMethod.GET)
-	public String getGameAttributes(@PathVariable("id") Long id, @Valid Model model) {
+	@RequestMapping(value="/questionare/{id}/questions", method = RequestMethod.GET)
+	public String getQuestionareQuestions(@PathVariable("id") Long id, @Valid Model model) {
 		Optional<Questionare> questionare = questionareRepository.findById(id);
 		questionare.ifPresent(foundQuestionareObject -> model.addAttribute("questionare", foundQuestionareObject));
-		model.addAttribute("questions", questionRepository.findAll());
+		model.addAttribute("questions", questionRepository.findByQuestionareId(id));
 		return "questionarequestions";
 	}
 
@@ -85,7 +81,7 @@ public class AdminController {
 
 	// Delete Questions
 	@RequestMapping(value="/questionare/{id}/questions/delete/{guestionid}", method = RequestMethod.GET)
-	public String deleteGameAttributes(@PathVariable("id") Long id, @PathVariable("guestionid") Long guestionid) {
+	public String deleteQuestionareQuestions(@PathVariable("id") Long id, @PathVariable("guestionid") Long guestionid) {
 		Questionare questionare = questionareRepository.findById(id).get();
 		Question question = questionRepository.findById(guestionid).get();
 		if (questionare.hasQuestion(question)) {

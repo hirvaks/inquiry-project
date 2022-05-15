@@ -12,6 +12,7 @@
 					<tr>
 						<th>Kysymyksen nimi</th>
 						<th>Tyyppi</th>
+						<th>Kysely ID</th>
 						<th>Vastaukset</th>
 						<th>Delete</th>
 					</tr>
@@ -19,13 +20,14 @@
 				<tbody>
 					<tr th:each = "question : ${questionare.questions}">
 						<td th:text ="${question.name}"></td>
-						<td th:text="${question.type}"></td>
+						<td th:text="${question.type.name}"></td>
+						<td th:text="${question.questionare.id}"></td>
 						<td><a th:href="@{/question/{id}/answers(id=${questionare.id})}" th:text="Vastaukset"></a></td>
-						<td><a th:href="@{/questionare/{id}/questions/delete/{questionid}/(id=${questionare.id}, questionid=${question.id})}" th:text="delete"></a><td>
+						<td><a th:href="@{/questionare/{id}/questions/delete/{questionid}/(id=${questionare.id}, questionid=${question.id})}">Delete</a><td>
 					</tr>
 				</tbody>
 			</table>
-			<a href="/admin" th:text="Takaisin"></a>
+			<a href="/questionares" th:text="Takaisin"></a>
 		</div>
 	</body>
 </html>

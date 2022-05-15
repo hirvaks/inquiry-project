@@ -25,7 +25,7 @@
 						<div th:if="${questionare.status} == 0"><td>Ei aktiivinen</td></div>
 						<td><a th:href="@{/questionare/{id}/questions(id=${questionare.id})}" th:text="Kysymykset"></a></td>
 						<td><a th:href="@{/questionare/{id}/edit(id=${questionare.id})}"></a></td>
-						<td><a th:href="@{/questionare/{id}/delete(id=${questionare.id})}"></a><td>
+						<td><a th:href="@{/questionare/{id}/delete(id=${questionare.id})}">Delete</a><td>
 					</tr>
 				</tbody>
 			</table>

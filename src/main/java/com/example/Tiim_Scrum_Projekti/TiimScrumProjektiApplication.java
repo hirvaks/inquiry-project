@@ -57,6 +57,12 @@ public class TiimScrumProjektiApplication {
 			questionarerepo.save(questionare1);
 			questionarerepo.save(questionare2);
 
+			question1.setQuestionare(questionare1);
+			question2.setQuestionare(questionare1);
+
+			qrepository.save(question1);
+			qrepository.save(question2);
+
 			log.info("fetch all questions");
 			for (Question question : qrepository.findAll()) {
 				log.info(question.toString());
