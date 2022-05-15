@@ -43,7 +43,7 @@ public class AdminController {
 		return "login";
 	}
 
-	// Create a quiz
+	// Create a questionare
 	@RequestMapping(value = "/questionare/add", method = RequestMethod.GET)
 	public String addQuestionare(@Valid Model model) {
 		model.addAttribute("questionare", new Questionare());
@@ -61,14 +61,14 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 
-	// List all quizzess
+	// List all questionares
 	@RequestMapping(value = { "/quizzes" }, method = RequestMethod.GET)
 	public String getQuizzes(@Valid Model model) {
 		model.addAttribute("questionares", questionareRepository.findAll());
 		return "questionares";
 	}
 
-	// List quiz questions
+	// List a questionares questions
 	@RequestMapping(value = "/questionare/{id}/questions", method = RequestMethod.GET)
 	public String getGameAttributes(@PathVariable("id") Long id, @Valid Model model) {
 		Optional<Questionare> questionare = questionareRepository.findById(id);
@@ -85,13 +85,13 @@ public class AdminController {
 
 	// Delete Questions
 	@RequestMapping(value="/questionare/{id}/questions/delete/{guestionid}", method = RequestMethod.GET)
-	public String deleteGameAttributes(@PathVariable("id") Long id, @PathVariable("guestionid") Long attid) {
+	public String deleteGameAttributes(@PathVariable("id") Long id, @PathVariable("guestionid") Long guestionid) {
 		Questionare questionare = questionareRepository.findById(id).get();
-		Question question = questionRepository.findById(attid).get();
+		Question question = questionRepository.findById(guestionid).get();
 		if (questionare.hasQuestion(question)) {
 			questionare.deleteQuestion(question);
 			questionareRepository.save(questionare);
 		}
-		return "redirect:/game/{id}/attributes";
+		return "redirect:/questionare/{id}/questions";
 	}
 }
