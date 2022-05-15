@@ -22,7 +22,7 @@ public class Questionare {
     private String name;
     private int status;
 
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "questionare")
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "questionare", orphanRemoval = true)
     @JsonIgnore
     private List<Question> questions;
 

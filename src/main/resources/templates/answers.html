@@ -5,20 +5,21 @@
 		<title>Vastaukset</title>
 	</head>
 	<body>
+		<h2>Vastaukset</h2>
 		<div>
 			<table>
 				<thead>
 					<tr>
 						<th>Vastaus</th>
-						<th>vastauksen tyyppi</th>
-						<th>Kysymyksen id</th>
+						<th>Vastauksen tyyppi</th>
+						<th>Poista</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each = "answer : ${question.answers}">
-						<td th:text ="${answer.name}"></td>
+						<td th:text ="${answer.value}"></td>
 						<td th:text="${answer.type.name}"></td>
-						<td th:text="${question.id}"></td>
+						<td><a th:href="@{/question/{id}/answers/delete/{answerid}/(id=${question.id}, answerid=${answer.id})}">Delete</a><td></td>
 					</tr>
 				</tbody>
 			</table>

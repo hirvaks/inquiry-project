@@ -9,4 +9,6 @@ public interface AnswerRepository extends CrudRepository<Answer, Long> {
 
 	Answer findById(long id);
 
+	List<Answer> findByQuestionId(Long id);
+
 }

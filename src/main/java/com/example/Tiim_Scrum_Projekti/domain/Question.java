@@ -29,7 +29,7 @@ public class Question {
     @JoinColumn(name = "typeid")
     private Type type;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "question")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question", orphanRemoval = true)
     @JsonIgnore
     private List<Answer> answers;
 
@@ -46,9 +46,10 @@ public class Question {
         this.questionare = questionare;
     }
 
-    public Question(String name, Type type) {
+    public Question(String name, Type type, Questionare questionare) {
         this.name = name;
         this.type = type;
+        this.questionare = questionare;
     }
 
     public Question() {
@@ -96,7 +97,7 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question [answers=" + answers + ", id=" + id + ", name=" + name + ", questionare=" + questionare
+        return "id=" + id + ", name=" + name + ", questionare=" + questionare
                 + ", type=" + type + "]";
     }
 

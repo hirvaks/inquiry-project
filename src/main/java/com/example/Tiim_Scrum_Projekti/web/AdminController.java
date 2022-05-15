@@ -1,5 +1,6 @@
 package com.example.Tiim_Scrum_Projekti.web;
 
+import com.example.Tiim_Scrum_Projekti.domain.AnswerRepository;
 import com.example.Tiim_Scrum_Projekti.domain.Question;
 import com.example.Tiim_Scrum_Projekti.domain.QuestionRepository;
 import com.example.Tiim_Scrum_Projekti.domain.Questionare;
@@ -30,6 +31,9 @@ public class AdminController {
 
 	@Autowired
 	private TypeRepository typeRepository;
+
+	@Autowired
+	private AnswerRepository answerRepository;
 
 	// Admin page
 	@RequestMapping(value = {"/admin", "/"}, method = RequestMethod.GET)
@@ -75,19 +79,17 @@ public class AdminController {
 
 	// Show answers
 	@RequestMapping(value = "/question/{id}/answers")
-	public String getAnswers() {
+	public String getAnswers(@PathVariable("id") Long id, @Valid Model model) {
+		Optional<Question> question = questionRepository.findById(id);
+		question.ifPresent(foundQuestionObject -> model.addAttribute("question", foundQuestionObject));
+		model.addAttribute("answers", answerRepository.findByQuestionId(id));
 		return "answers";
 	}
 
 	// Delete Questions
-	@RequestMapping(value="/questionare/{id}/questions/delete/{guestionid}", method = RequestMethod.GET)
-	public String deleteQuestionareQuestions(@PathVariable("id") Long id, @PathVariable("guestionid") Long guestionid) {
-		Questionare questionare = questionareRepository.findById(id).get();
-		Question question = questionRepository.findById(guestionid).get();
-		if (questionare.hasQuestion(question)) {
-			questionare.deleteQuestion(question);
-			questionareRepository.save(questionare);
-		}
-		return "redirect:/questionare/{id}/questions";
+	@RequestMapping(value="/question/{id}/delete", method = RequestMethod.GET)
+	public String deleteQuestion(@PathVariable("id") Long id) {
+		questionRepository.deleteById(id);
+		return "redirect:/questionares";
 	}
 }

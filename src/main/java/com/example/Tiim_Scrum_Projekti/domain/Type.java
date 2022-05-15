@@ -21,11 +21,11 @@ public class Type {
 	
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "type")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "type", orphanRemoval = true)
 	@JsonIgnore
 	private List<Answer> answers;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "type")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "type", orphanRemoval = true)
     @JsonIgnore
     private List<Question> questions;
 	

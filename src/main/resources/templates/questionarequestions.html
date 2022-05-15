@@ -22,8 +22,8 @@
 						<td th:text ="${question.name}"></td>
 						<td th:text="${question.type.name}"></td>
 						<td th:text="${question.questionare.id}"></td>
-						<td><a th:href="@{/question/{id}/answers(id=${questionare.id})}" th:text="Vastaukset"></a></td>
-						<td><a th:href="@{/questionare/{id}/questions/delete/{questionid}/(id=${questionare.id}, questionid=${question.id})}">Delete</a><td>
+						<td><a th:href="@{/question/{id}/answers(id=${question.id})}" th:text="Vastaukset"></a></td>
+						<td><a th:href="@{/question/{id}/delete(id=${question.id})}">Delete</a><td>
 					</tr>
 				</tbody>
 			</table>
