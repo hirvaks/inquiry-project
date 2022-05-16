@@ -29,7 +29,7 @@ public class QuestionRestController {
         return quizrepo.findAll();
     }
 
-    // RESTful service to get all quizzes
+    // RESTful service to get all questions
     @GetMapping("/questions")
     Iterable<Question> getAll() {
         return qrepository.findAll();
