@@ -22,13 +22,13 @@ public class Question {
     private long id;
 
     private String name;
-    
+
     @ManyToOne
     @JsonIgnoreProperties
     @JoinColumn(name = "typeid")
     private Type type;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question"/* orphanRemoval = true */)
     @JsonIgnore
     private List<Answer> answers;
 

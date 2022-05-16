@@ -11,12 +11,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.Tiim_Scrum_Projekti.domain.Question;
 import com.example.Tiim_Scrum_Projekti.domain.QuestionRepository;
+import com.example.Tiim_Scrum_Projekti.domain.Questionare;
+import com.example.Tiim_Scrum_Projekti.domain.QuestionareRepository;
 
 @RestController
 public class QuestionRestController {
 
     @Autowired
     private QuestionRepository qrepository;
+
+    @Autowired
+    private QuestionareRepository quizrepo;
+
+    // RESTful service to get all quizzes
+    @GetMapping("/questionare")
+    Iterable<Questionare> getAllQuestionares() {
+        return quizrepo.findAll();
+    }
 
     // RESTful service to get all quizzes
     @GetMapping("/questions")

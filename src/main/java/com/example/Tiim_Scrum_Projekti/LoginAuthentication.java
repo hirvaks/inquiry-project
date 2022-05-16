@@ -18,31 +18,33 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class LoginAuthentication extends WebSecurityConfigurerAdapter {
 
     @Autowired
-	private UserDetailServiceImpl userDetailsService;
+    private UserDetailServiceImpl userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/questions", "/questions/{id}", "/h2-console/**").permitAll()
+                .antMatchers("/", "/login", "/questions", "/questions/{id}").permitAll()
                 .and()
-			    .authorizeRequests().anyRequest().authenticated()
+                .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .csrf().ignoringAntMatchers("/h2-console/**")
-			    .and()
-			    .headers().frameOptions().sameOrigin()
-			    .and()
+                .and()
+                .headers().frameOptions().sameOrigin()
+                .and()
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/admin", true)
                 .and()
                 .logout()
                 .permitAll();
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
 
     }
 
     @Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-	}
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+    }
 }
