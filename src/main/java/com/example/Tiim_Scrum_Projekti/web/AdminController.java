@@ -36,7 +36,7 @@ public class AdminController {
 	private AnswerRepository answerRepository;
 
 	// Admin page
-	@RequestMapping(value = {"/admin", "/"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
 	public String getAdminPage() {
 		return "admin";
 	}
@@ -76,7 +76,7 @@ public class AdminController {
 		savedQuestionare.setName(questionare.getName());
 		savedQuestionare.setStatus(questionare.getStatus());
 		questionareRepository.save(savedQuestionare);
-		return "redirect:/";
+		return "redirect:/admin";
 	}
 
 	// List all questionares

@@ -12,8 +12,8 @@ import com.example.Tiim_Scrum_Projekti.domain.Questionare;
 import com.example.Tiim_Scrum_Projekti.domain.QuestionareRepository;
 import com.example.Tiim_Scrum_Projekti.domain.Type;
 import com.example.Tiim_Scrum_Projekti.domain.TypeRepository;
-
-
+import com.example.Tiim_Scrum_Projekti.domain.User;
+import com.example.Tiim_Scrum_Projekti.domain.UserRepository;
 import com.example.Tiim_Scrum_Projekti.domain.Answer;
 import com.example.Tiim_Scrum_Projekti.domain.AnswerRepository;
 import com.example.Tiim_Scrum_Projekti.domain.Question;
@@ -28,7 +28,7 @@ public class TiimScrumProjektiApplication {
 
 	@Bean
 	public CommandLineRunner QuestionDemo(QuestionRepository qrepository, TypeRepository typerepo,
-			QuestionareRepository questionarerepo, AnswerRepository answerrepo) {
+			QuestionareRepository questionarerepo, AnswerRepository answerrepo, UserRepository userRepository) {
 		return (args) -> {
 
 			//creating types
@@ -71,6 +71,9 @@ public class TiimScrumProjektiApplication {
 			for (Question question : qrepository.findAll()) {
 				log.info(question.toString());
 			}
+
+			User user1 = new User("admin", "$2a$10$Omtovcvwjp1aIjZPXqTUvelwrYdtVQdfsaRCB1QzXNncTOgfnYd/W", "ADMIN");
+			userRepository.save(user1);
 
 		};
 	}
