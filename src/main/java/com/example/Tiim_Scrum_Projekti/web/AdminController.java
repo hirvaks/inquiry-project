@@ -61,6 +61,24 @@ public class AdminController {
 		return "redirect:/questionares";
 	}
 
+	//edit questionare
+	@RequestMapping(value="/questionare/{id}/edit", method = RequestMethod.GET)
+	public String editQuestionare(@PathVariable("id") Long id, @Valid Model model) {
+		Optional<Questionare> questionare = questionareRepository.findById(id);
+		questionare.ifPresent(foundQuestionareObject -> model.addAttribute("questionare", foundQuestionareObject));
+		return "editquestionare";
+	}
+	//<--- save
+	@RequestMapping(value="/questionare/save", method = RequestMethod.POST)
+	public String saveQuestionare(@Valid Questionare questionare) {
+		Optional<Questionare> optQuestionare = questionareRepository.findById(questionare.getId());
+		Questionare savedQuestionare = optQuestionare.get();
+		savedQuestionare.setName(questionare.getName());
+		savedQuestionare.setStatus(questionare.getStatus());
+		questionareRepository.save(savedQuestionare);
+		return "redirect:/";
+	}
+
 	// List all questionares
 	@RequestMapping(value="/questionares", method = RequestMethod.GET)
 	public String getQuestionares(@Valid Model model) {
@@ -90,6 +108,13 @@ public class AdminController {
 	@RequestMapping(value="/question/{id}/delete", method = RequestMethod.GET)
 	public String deleteQuestion(@PathVariable("id") Long id) {
 		questionRepository.deleteById(id);
+		return "redirect:/questionares";
+	}
+
+	// Delete Answers
+	@RequestMapping(value="/answer/{id}/delete", method = RequestMethod.GET)
+	public String deleteAnswer(@PathVariable("id") Long id) {
+		answerRepository.deleteById(id);
 		return "redirect:/questionares";
 	}
 }

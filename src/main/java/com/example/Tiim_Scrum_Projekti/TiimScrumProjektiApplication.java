@@ -13,8 +13,6 @@ import com.example.Tiim_Scrum_Projekti.domain.QuestionareRepository;
 import com.example.Tiim_Scrum_Projekti.domain.Type;
 import com.example.Tiim_Scrum_Projekti.domain.TypeRepository;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import com.example.Tiim_Scrum_Projekti.domain.Answer;
 import com.example.Tiim_Scrum_Projekti.domain.AnswerRepository;

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	<head>
+		<meta http-equiv="Content-Type" contect="text/html" charset="UTF-8">
+		<title>Kyselyt</title>
+	</head>
+	<body>
+		<div>
+			<form th:object="${questionare}" th:action="@{/questionare/save}" method="post">
+				<input type="hidden" th:field="*{id}" />
+				<input type="hidden" th:object="${questionare.questions}" />
+			  	<label>Kyselyn nimi</label>
+				<input th:field="*{name}" />
+				<p></p>
+				<label>Onko aktiivinen? (0 = ei, 1 = kyllä)</label>
+				<input th:field="*{status}" />
+				<p></p>
+				<input type="submit" class="btn btn-success">Tallenna</input>
+			</form>
+		</div>
+	</body>
+</html>
