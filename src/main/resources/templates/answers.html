@@ -19,7 +19,7 @@
 					<tr th:each = "answer : ${question.answers}">
 						<td th:text ="${answer.value}"></td>
 						<td th:text="${answer.type.name}"></td>
-						<td><a th:href="@{/question/{id}/answers/delete/{answerid}/(id=${question.id}, answerid=${answer.id})}">Delete</a><td></td>
+						<td><a th:href="@{/answer/{id}/delete(id=${answer.id})}">Delete</a><td></td>
 					</tr>
 				</tbody>
 			</table>
