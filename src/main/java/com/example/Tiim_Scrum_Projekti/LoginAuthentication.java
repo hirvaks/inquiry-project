@@ -24,7 +24,7 @@ public class LoginAuthentication extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/questions", "/questions/{id}").permitAll()
+                .antMatchers("/", "/login", "/questions", "/questions/{id}", "/questionare").permitAll()
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
