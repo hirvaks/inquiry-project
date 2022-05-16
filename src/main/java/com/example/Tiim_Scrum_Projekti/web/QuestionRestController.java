@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.example.Tiim_Scrum_Projekti.domain.Answer;
+import com.example.Tiim_Scrum_Projekti.domain.AnswerRepository;
 import com.example.Tiim_Scrum_Projekti.domain.Question;
 import com.example.Tiim_Scrum_Projekti.domain.QuestionRepository;
 import com.example.Tiim_Scrum_Projekti.domain.Questionare;
@@ -22,6 +24,9 @@ public class QuestionRestController {
 
     @Autowired
     private QuestionareRepository quizrepo;
+
+    @Autowired
+    private AnswerRepository arepo;
 
     // RESTful service to get all quizzes
     @GetMapping("/questionare")
@@ -53,6 +58,12 @@ public class QuestionRestController {
     void deleteQuestion(@PathVariable Long id) {
         qrepository.deleteById(id);
 
+    }
+
+    // RESTful service to get all answers
+    @GetMapping("/answerRepo")
+    Iterable<Answer> getAllAnswers() {
+        return arepo.findAll();
     }
 
 }
