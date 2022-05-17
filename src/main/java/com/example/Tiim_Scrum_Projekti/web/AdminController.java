@@ -53,6 +53,11 @@ public class AdminController {
 		model.addAttribute("questionare", new Questionare());
 		return "createquiz";
 	}
+	@RequestMapping(value="/questionare/create", method = RequestMethod.POST)
+	public String createQuestionare(Questionare questionare) {
+		questionareRepository.save(questionare);
+		return "redirect:/questionares";
+	}	
 
 	// Delete Questionare
 	@RequestMapping(value="/questionare/{id}/delete", method = RequestMethod.GET)
@@ -75,8 +80,8 @@ public class AdminController {
 		Questionare savedQuestionare = optQuestionare.get();
 		savedQuestionare.setName(questionare.getName());
 		savedQuestionare.setStatus(questionare.getStatus());
-		questionareRepository.save(savedQuestionare);
-		return "redirect:/admin";
+		questionareRepository.save(questionare);
+		return "redirect:/questionares";
 	}
 
 	// List all questionares
@@ -117,4 +122,17 @@ public class AdminController {
 		answerRepository.deleteById(id);
 		return "redirect:/questionares";
 	}
+	// Add question to questionare
+	@RequestMapping(value="/questionare/{id}/addquestion")
+	public String addQuestionareQuestions(Model model) {
+		model.addAttribute("question", new Question());
+		return "addquestion";
+	}
+
+	@RequestMapping(value = "/savequestion", method = RequestMethod.POST)
+	public String saveQuestion(Question question){
+		QuestionareRepository.save(question);
+		return "redirect:/questionares";
+	}
+
 }

@@ -24,10 +24,12 @@
 						<td th:text="${question.questionare.id}"></td>
 						<td><a th:href="@{/question/{id}/answers(id=${question.id})}" th:text="Vastaukset"></a></td>
 						<td><a th:href="@{/question/{id}/delete(id=${question.id})}">Delete</a><td>
+						<a href="/questionare/{questionare.id}/addquestion" th:text="Lisää" th:value=${questionare.id}></a>
 					</tr>
 				</tbody>
 			</table>
 			<a href="/questionares" th:text="Takaisin"></a>
+			
 		</div>
 	</body>
 </html>
