@@ -63,7 +63,7 @@ public class TiimScrumProjektiApplication {
 			answerrepo.save(answer3question1);
 
 			// creating answer to question 2 and saving etc.
-			Answer answer1question2 = new Answer("Jaa-a, ei oikee oo tietoo", type1);
+			Answer answer1question2 = new Answer("Jaa-a, ei oikee oo tietoo", type1, question2);
 			answerrepo.save(answer1question2);
 
 			log.info("fetch all questions");
