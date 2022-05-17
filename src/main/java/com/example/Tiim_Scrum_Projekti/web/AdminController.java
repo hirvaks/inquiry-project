@@ -36,7 +36,7 @@ public class AdminController {
 	private AnswerRepository answerRepository;
 
 	// Admin page
-	@RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin" }, method = RequestMethod.GET)
 	public String getAdminPage() {
 		return "admin";
 	}
@@ -53,28 +53,30 @@ public class AdminController {
 		model.addAttribute("questionare", new Questionare());
 		return "createquiz";
 	}
-	@RequestMapping(value="/questionare/create", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/questionare/create", method = RequestMethod.POST)
 	public String createQuestionare(Questionare questionare) {
 		questionareRepository.save(questionare);
 		return "redirect:/questionares";
-	}	
+	}
 
 	// Delete Questionare
-	@RequestMapping(value="/questionare/{id}/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/questionare/{id}/delete", method = RequestMethod.GET)
 	public String deleteQuestionare(@PathVariable("id") Long id, @Valid Model model) {
 		questionareRepository.deleteById(id);
 		return "redirect:/questionares";
 	}
 
-	//edit questionare
-	@RequestMapping(value="/questionare/{id}/edit", method = RequestMethod.GET)
+	// edit questionare
+	@RequestMapping(value = "/questionare/{id}/edit", method = RequestMethod.GET)
 	public String editQuestionare(@PathVariable("id") Long id, @Valid Model model) {
 		Optional<Questionare> questionare = questionareRepository.findById(id);
 		questionare.ifPresent(foundQuestionareObject -> model.addAttribute("questionare", foundQuestionareObject));
 		return "editquestionare";
 	}
-	//<--- save
-	@RequestMapping(value="/questionare/save", method = RequestMethod.POST)
+
+	// <--- save
+	@RequestMapping(value = "/questionare/save", method = RequestMethod.POST)
 	public String saveQuestionare(@Valid Questionare questionare) {
 		Optional<Questionare> optQuestionare = questionareRepository.findById(questionare.getId());
 		Questionare savedQuestionare = optQuestionare.get();
@@ -85,14 +87,14 @@ public class AdminController {
 	}
 
 	// List all questionares
-	@RequestMapping(value="/questionares", method = RequestMethod.GET)
+	@RequestMapping(value = "/questionares", method = RequestMethod.GET)
 	public String getQuestionares(@Valid Model model) {
 		model.addAttribute("questionares", questionareRepository.findAll());
 		return "questionares";
 	}
 
 	// List a questionares questions
-	@RequestMapping(value="/questionare/{id}/questions", method = RequestMethod.GET)
+	@RequestMapping(value = "/questionare/{id}/questions", method = RequestMethod.GET)
 	public String getQuestionareQuestions(@PathVariable("id") Long id, @Valid Model model) {
 		Optional<Questionare> questionare = questionareRepository.findById(id);
 		questionare.ifPresent(foundQuestionareObject -> model.addAttribute("questionare", foundQuestionareObject));
@@ -110,28 +112,29 @@ public class AdminController {
 	}
 
 	// Delete Questions
-	@RequestMapping(value="/question/{id}/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/question/{id}/delete", method = RequestMethod.GET)
 	public String deleteQuestion(@PathVariable("id") Long id) {
 		questionRepository.deleteById(id);
 		return "redirect:/questionares";
 	}
 
 	// Delete Answers
-	@RequestMapping(value="/answer/{id}/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/answer/{id}/delete", method = RequestMethod.GET)
 	public String deleteAnswer(@PathVariable("id") Long id) {
 		answerRepository.deleteById(id);
 		return "redirect:/questionares";
 	}
+
 	// Add question to questionare
-	@RequestMapping(value="/questionare/{id}/addquestion")
+	@RequestMapping(value = "/questionare/{id}/addquestion")
 	public String addQuestionareQuestions(Model model) {
 		model.addAttribute("question", new Question());
 		return "addquestion";
 	}
 
 	@RequestMapping(value = "/savequestion", method = RequestMethod.POST)
-	public String saveQuestion(Question question){
-		QuestionareRepository.save(question);
+	public String saveQuestion(Question question) {
+		questionRepository.save(question);
 		return "redirect:/questionares";
 	}
 
